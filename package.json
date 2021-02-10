@@ -1,0 +1,28 @@
+{
+  "name": "MERN-Workshop-2021",
+  "version": "1.0.0",
+  "description": "New and improved MERN workshop!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dylans123/MERN-Workshop-2021.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dylans123/MERN-Workshop-2021/issues"
+  },
+  "homepage": "https://github.com/Dylans123/MERN-Workshop-2021#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.15",
+    "path": "^0.12.7"
+  }
+}
