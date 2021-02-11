@@ -16,7 +16,8 @@ const App = () => {
   }, [])
 
   const onFinish = (values) => {
-    fetch('/api', { method: 'POST', headers: { ContentType: 'application/json'}, body: JSON.stringify(values)})
+    console.log(values)
+    fetch('/api', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(values)})
       .then(function (response) {
         console.log(response);
       })

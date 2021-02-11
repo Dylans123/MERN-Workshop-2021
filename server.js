@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 app.post('/api', async (req, res) => {
   const body = req.body;
+  console.log(body)
   const book = new Book(body);
   await book.save((error) => {
     if (error) {
