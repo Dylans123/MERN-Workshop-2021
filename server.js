@@ -27,7 +27,6 @@ app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 app.post('/api', async (req, res) => {
   const body = req.body;
-  console.log(body)
   const book = new Book(body);
   await book.save((error) => {
     if (error) {
@@ -41,11 +40,24 @@ app.post('/api', async (req, res) => {
   })
 })
 
+app.get('/api', async (req, res) => {
+  const query = Book.find({})
+  await query.exec((error, books) => {
+    if (error) {
+      res.status(400)
+      res.send('Failed to find book in the database')
+    } else {
+      res.status(200)
+      res.send(books)
+    }
+  })
+})
+
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
 })
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Our app is running on port ${ PORT }`);
 });

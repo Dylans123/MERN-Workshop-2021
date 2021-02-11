@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Menu, Breadcrumb, Form, Input, Button } from 'antd';
 import 'antd/dist/antd.css';
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
+  const [books, setBooks] = useState([])
+
+  useEffect(() => {
+    fetch('/api')
+      .then(async (res) => await res.json())
+      .then((res) => {
+        console.log(res)
+        setBooks(res)
+      })
+  }, [])
+
   const onFinish = (values) => {
     fetch('/api', { method: 'POST', headers: { ContentType: 'application/json'}, body: JSON.stringify(values)})
       .then(function (response) {
@@ -15,7 +26,7 @@ const App = () => {
   };
 
   return (
-    <Layout className="layout" style={{ height: '100vh' }}>
+    <Layout className="layout" style={{ minHeight: '100vh' }}>
       <Header>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
@@ -46,6 +57,25 @@ const App = () => {
             </Button>
           </Form.Item>
         </Form>
+        <h3>My Books</h3>
+        {books.map((book) => {
+          return (
+            <div>
+              <b>Title</b>
+              <p>
+                { book.title }
+              </p>
+              <b>Description</b>
+              <p>
+                { book.description }
+              </p>
+              <b>Author</b>
+              <p>
+                { book.author }
+              </p>
+            </div>
+          )
+        })}
       </Content>
       <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     </Layout>
